@@ -1,7 +1,12 @@
-const authReducer = (state, action) => {
+interface InitStateValue {
+  isAuthenticated: boolean;
+  token: string | null;
+}
+
+const authReducer = (state: InitStateValue, action: any) => {
   switch (action.type) {
     case 'login':
-      const token = action.payload.token;
+      const token: string = action.payload.token;
       localStorage.setItem('token', token);
 
       return {

@@ -1,16 +1,16 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 import './App.css';
 import Header from './components/Header';
+import Login from './components/Login';
 import authReducer from './authReducer';
 
-const AuthContext = createContext();
+const AuthContext = createContext({});
 
 const App = () => {
   interface InitStateValue {
     isAuthenticated: boolean;
-    token: string;
+    token: string | null;
   }
-
   const initialState: InitStateValue = {
     isAuthenticated: false,
     token: null,
@@ -19,15 +19,15 @@ const App = () => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
-    const token: string = localStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
 
     token && dispatch({ type: 'login', payload: { token: token } });
-  });
+  }, []);
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       <div className="App">
-        <Header></Header>
+        {state.isAuthenticated ? <Header /> : <Login />}
       </div>
     </AuthContext.Provider>
   );
