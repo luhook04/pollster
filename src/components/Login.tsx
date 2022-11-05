@@ -1,6 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../App';
 const Login = () => {
+  const value = useContext(AuthContext);
+
+  const logValue = () => {
+    console.log(value);
+  };
+
   return (
     <div>
       <div>
@@ -31,7 +37,9 @@ const Login = () => {
           <div>
             <button type="submit">Login</button>
             <span>or</span>
-            <button type="button">Create Account</button>
+            <button onClick={logValue} type="button">
+              Create Account
+            </button>
           </div>
         </form>
       </div>

@@ -12,6 +12,7 @@ interface ContextType {
   dispatch: React.Dispatch<{ type: string; value: unknown }>;
 }
 const AuthContext = createContext<ContextType | null>(null);
+
 const App = () => {
   interface InitStateValue {
     isAuthenticated: boolean;
@@ -25,8 +26,9 @@ const App = () => {
 
   useEffect(() => {
     const token: string | null = localStorage.getItem('token');
-
-    token && dispatch({ type: 'login', payload: { token: token } });
+    if (token !== 'undefined') {
+      token && dispatch({ type: 'login', payload: { token: token } });
+    }
   }, []);
 
   return (
