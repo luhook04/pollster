@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import Login from '../components/Login';
 
 describe('Login Component', () => {
-  it('renders the login component', () => {
-    render(<Login />);
-  });
+  it('allows the user to type in the input fields', () => {});
+  it('does not submit the form with incorrect input', () => {});
+  it('succesfully submits the form', async () => {});
 });

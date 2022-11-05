@@ -4,8 +4,14 @@ import Header from './components/Header';
 import Login from './components/Login';
 import authReducer from './authReducer';
 
-const AuthContext = createContext({});
-
+interface ContextType {
+  state: {
+    isAuthenticated: boolean;
+    token: string | null;
+  };
+  dispatch: React.Dispatch<{ type: string; value: unknown }>;
+}
+const AuthContext = createContext<ContextType | null>(null);
 const App = () => {
   interface InitStateValue {
     isAuthenticated: boolean;
@@ -15,7 +21,6 @@ const App = () => {
     isAuthenticated: false,
     token: null,
   };
-
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {

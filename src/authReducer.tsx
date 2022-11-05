@@ -1,9 +1,4 @@
-interface InitStateValue {
-  isAuthenticated: boolean;
-  token: string | null;
-}
-
-const authReducer = (state: InitStateValue, action: any) => {
+const authReducer = (state: any, action: any) => {
   switch (action.type) {
     case 'login':
       const token: string = action.payload.token;

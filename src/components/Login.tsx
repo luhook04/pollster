@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-
+import React, { useState, useContext, useEffect } from 'react';
+import { AuthContext } from '../App';
 const Login = () => {
   return (
     <div>

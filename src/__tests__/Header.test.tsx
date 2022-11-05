@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import Header from '../components/Header';
 
 describe('Header Component', () => {
+  it('shows the username of the user if they are logged in', () => {});
   it('does not render the dropdown menu until menu click', async () => {
     render(<Header />);
     const menu = screen.queryByRole('navigation');
