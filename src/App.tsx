@@ -9,7 +9,7 @@ interface ContextType {
     isAuthenticated: boolean;
     token: string | null;
   };
-  dispatch: React.Dispatch<{ type: string; value: unknown }>;
+  dispatch: React.Dispatch<any>;
 }
 const AuthContext = createContext<ContextType | null>(null);
 
