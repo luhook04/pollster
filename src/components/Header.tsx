@@ -1,6 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
+import { AuthContext } from '../App';
 
 const Header = () => {
+  const value = useContext(AuthContext);
+
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
     return () => {
@@ -13,6 +16,10 @@ const Header = () => {
 
   const openDropdown = (): void => {
     setShowDropdown(true);
+  };
+
+  const handleLogout = (): void => {
+    value?.dispatch({ type: 'logout' });
   };
 
   const handleClickOutside = (event: MouseEvent): void => {
@@ -32,11 +39,9 @@ const Header = () => {
             <div className="header-dropdown" ref={ref}>
               <nav>
                 <ul>
+                  <li>View Profile</li>
                   <li>
-                    <a href="https://www.w3schools.com">View Profile</a>
-                  </li>
-                  <li>
-                    <a href="/">Logout</a>
+                    <button onClick={handleLogout}>Logout</button>
                   </li>
                 </ul>
               </nav>
