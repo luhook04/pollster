@@ -27,4 +27,14 @@ describe('Login Component', () => {
       expect(screen.getByText('Incorrect Login')).toBeInTheDocument();
     });
   });
+
+  it('opens the signup form on create account button click', async () => {
+    render(<Login />);
+    const button = screen.getByRole('button', { name: 'Create Account' });
+    expect(
+      screen.queryByRole('header', { name: 'Signup' })
+    ).not.toBeInTheDocument();
+    await userEvent.click(button);
+    expect(screen.getByRole('header', { name: 'Signup' })).toBeInTheDocument();
+  });
 });

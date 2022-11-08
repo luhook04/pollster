@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../App';
+import Signup from './Signup';
 
 const Login = () => {
   const value = useContext(AuthContext);
@@ -10,17 +11,22 @@ const Login = () => {
   });
   const [errorPopup, setErrorPopup] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [signupForm, setSignupForm] = useState<boolean>(false);
 
   useEffect(() => {
     if (errorPopup) {
       setTimeout(() => {
         setErrorPopup(false);
-      }, 5000);
+      }, 3000);
     }
   }, [errorPopup]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const openSignup = () => {
+    setSignupForm(!signupForm);
   };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -81,7 +87,9 @@ const Login = () => {
           <div>
             <button type="submit">Login</button>
             <span>or</span>
-            <button type="button">Create Account</button>
+            <button onClick={openSignup} type="button">
+              Create Account
+            </button>
           </div>
           {errorPopup ? (
             <div>
@@ -90,6 +98,7 @@ const Login = () => {
           ) : null}
         </form>
       </div>
+      {signupForm ? <Signup /> : null}
     </div>
   );
 };
