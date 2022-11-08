@@ -32,9 +32,11 @@ describe('Login Component', () => {
     render(<Login />);
     const button = screen.getByRole('button', { name: 'Create Account' });
     expect(
-      screen.queryByRole('header', { name: 'Signup' })
+      screen.queryByRole('heading', { name: 'Signup' })
     ).not.toBeInTheDocument();
+    expect(screen.getAllByRole('button')).toHaveLength(2);
     await userEvent.click(button);
-    expect(screen.getByRole('header', { name: 'Signup' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Signup' })).toBeInTheDocument();
+    expect(screen.getAllByRole('button')).toHaveLength(3);
   });
 });

@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from 'react';
+import React, { createContext, useState, useEffect, useReducer } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Login from './components/Login';
@@ -22,6 +22,10 @@ const App = () => {
     isAuthenticated: false,
     token: null,
   };
+  const [user, setUser] = useState<{ username: string; password: string }>({
+    username: '',
+    password: '',
+  });
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
@@ -34,7 +38,11 @@ const App = () => {
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       <div className="App">
-        {state.isAuthenticated ? <Header /> : <Login />}
+        {state.isAuthenticated ? (
+          <Header />
+        ) : (
+          <Login user={user} setUser={setUser} />
+        )}
       </div>
     </AuthContext.Provider>
   );

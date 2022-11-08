@@ -2,13 +2,15 @@ import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../App';
 import Signup from './Signup';
 
-const Login = () => {
+const Login = ({
+  user,
+  setUser,
+}: {
+  user: { username: string; password: string };
+  setUser: any;
+}) => {
   const value = useContext(AuthContext);
 
-  const [user, setUser] = useState<{ username: string; password: string }>({
-    username: '',
-    password: '',
-  });
   const [errorPopup, setErrorPopup] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [signupForm, setSignupForm] = useState<boolean>(false);
@@ -67,7 +69,6 @@ const Login = () => {
         <form onSubmit={handleLogin} action="POST">
           <div>
             <input
-              id="input"
               type="text"
               placeholder="Enter Username"
               name="username"
