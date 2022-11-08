@@ -35,11 +35,15 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       <div className="App">
         {state.isAuthenticated ? (
-          <Header />
+          <Header user={user} setUser={setUser} />
         ) : (
           <Login user={user} setUser={setUser} />
         )}

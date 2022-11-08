@@ -1,7 +1,13 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { AuthContext } from '../App';
 
-const Header = () => {
+const Header = ({
+  user,
+  setUser,
+}: {
+  user: { username: string; password: string };
+  setUser: any;
+}) => {
   const value = useContext(AuthContext);
 
   useEffect(() => {
@@ -19,6 +25,7 @@ const Header = () => {
   };
 
   const handleLogout = (): void => {
+    setUser({ username: '', password: '' });
     value?.dispatch({ type: 'logout' });
   };
 
