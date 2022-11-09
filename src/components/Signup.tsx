@@ -58,7 +58,6 @@ const Signup = ({
       return err;
     }
   };
-  console.log(errors);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setUser({ ...user, [e.target.name]: e.target.value });

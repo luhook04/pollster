@@ -2,10 +2,18 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from '../components/Login';
+import { App } from '../App';
 
 describe('Login Component', () => {
+  let user = {
+    username: '',
+    password: '',
+  };
+
+  let setUser = jest.fn();
+
   it('should call handleChange function on type', async () => {
-    render(<Login />);
+    render(<App />);
     const usernameInput = screen.getByPlaceholderText('Enter Username');
     const passwordInput = screen.getByPlaceholderText('Enter Password');
     await userEvent.type(usernameInput, 'testuser');
@@ -15,7 +23,7 @@ describe('Login Component', () => {
   });
 
   it('does not submit the form with incorrect input', async () => {
-    render(<Login />);
+    render(<Login user={user} setUser={setUser} />);
     const button = screen.getByRole('button', { name: 'Login' });
     const usernameInput = screen.getByPlaceholderText('Enter Username');
     const passwordInput = screen.getByPlaceholderText('Enter Password');
@@ -29,7 +37,7 @@ describe('Login Component', () => {
   });
 
   it('opens the signup form on create account button click', async () => {
-    render(<Login />);
+    render(<Login user={user} setUser={setUser} />);
     const button = screen.getByRole('button', { name: 'Create Account' });
     expect(
       screen.queryByRole('heading', { name: 'Signup' })
