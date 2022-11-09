@@ -28,7 +28,7 @@ const Login = ({
   };
 
   const openSignup = () => {
-    setSignupForm(!signupForm);
+    setSignupForm(true);
   };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -99,7 +99,9 @@ const Login = ({
           ) : null}
         </form>
       </div>
-      {signupForm ? <Signup /> : null}
+      {signupForm ? (
+        <Signup signupForm={signupForm} setSignupForm={setSignupForm} />
+      ) : null}
     </div>
   );
 };

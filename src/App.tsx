@@ -35,10 +35,6 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       <div className="App">
